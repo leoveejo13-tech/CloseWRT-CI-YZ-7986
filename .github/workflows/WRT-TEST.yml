@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# Copyright (C) 2026 VIKINGYFY
-
 #CI项目
 name: WRT-TEST
 
@@ -10,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       CONFIG:
-        default: 'MT7981'
+        default: 'MTK-7981'
         required: true
         type: choice
         options:
@@ -18,12 +15,11 @@ on:
           - MT7986
           - TEST
       SOURCE:
-        default: 'Yuzhii0718/immortalwrt-mt798x-6.6-padavanonly'
+        default: 'padavanonly/immortalwrt-mt798x-6.6'
         required: true
         type: choice
         options:
-         - Yuzhii0718/immortalwrt-mt798x-6.6-padavanonly
-         - chasey-dev/immortalwrt-mt798x-rebase
+         - padavanonly/immortalwrt-mt798x-6.6
       BRANCH:
         default: 'openwrt-24.10-6.6'
         required: true
@@ -33,7 +29,7 @@ on:
         type: string
       TEST:
         description: '仅输出配置文件，不编译固件。'
-        default: true
+        default: 'true'
         required: true
         type: boolean
 
@@ -50,7 +46,7 @@ jobs:
       #编译配置
       WRT_CONFIG: ${{inputs.CONFIG}}
       #默认主题
-      WRT_THEME: vantage
+      WRT_THEME: aurora
       #默认主机名
       WRT_NAME: CWRT
       #默认WIFI名称
@@ -70,4 +66,4 @@ jobs:
       #插件调整
       WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
-      WRT_TEST: ${{inputs.TEST || false}}
+      WRT_TEST: ${{inputs.TEST}}
